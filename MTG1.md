@@ -16,15 +16,13 @@
 ## 自動作曲
 
 - 元の曲はクラシック(J.S.バッハ)、ビートルズ、AKB、乃木坂系の曲のMIDIデータを使用。
-
 - Deep Bachをやってみる(RNNを前後で走らせる)(Deep BachのGitHub https://github.com/Ghadjeres/DeepBach/blob/master/README.md)
-
 - お客さんが適当に弾いた曲をその曲っぽくする
-
 - みんなでMIDIデータを集めましょう
-
 - Google Colaboratory (https://colab.research.google.com/notebooks/welcome.ipynb#scrollTo=ol93N5hsyNG0) を使う
-
+   * Google Colaboratoryの使い方(https://qiita.com/tomo_makes/items/b3c60b10f7b25a0a5935)
+   * 機械学習の基礎基本はこれを順次読んでいくといいかもしれない(http://hokuts.com/2015/11/24/ml0/)
+   
 ## 音源分離
 
 ## 音場再現 
