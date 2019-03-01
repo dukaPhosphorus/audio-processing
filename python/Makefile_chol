@@ -1,0 +1,22 @@
+
+PYTHON_H_DIR= /home/meip-users/.pyenv/versions/anaconda3-5.1.0/envs/python2/include/python2.7/
+NUMPY_LIB_DIR = /home/meip-users/.pyenv/versions/anaconda3-5.1.0/envs/python2/lib/python2.7/site-packages/numpy
+CXX = g++
+CXXFLAGS = -O2 -c -fPIC -I$(PYTHON_H_DIR) -I$(NUMPY_LIB_DIR)
+CYTHON = cython
+
+PROGRAM = chol
+
+SRC = $(PROGRAM).pyx
+SRCC= $(PROGRAM).c
+OBJ = $(SRC:.pyx=.o)
+OBJS = $(SRC:.pyx=.so)
+
+all:
+	@echo -n "Compile $(PROGRAM) ... "
+	@$(CYTHON) -o $(SRCC) $(SRC)
+	@$(CXX) $(CXXFLAGS) -o $(OBJ) $(SRCC)
+	@$(CXX) -shared -o $(OBJS) $(OBJ)
+	@echo "done."
+
+clean:; @rm -f $(SRCC) $(OBJ) $(OBJS)
