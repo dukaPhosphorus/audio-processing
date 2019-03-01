@@ -1,0 +1,14 @@
+README         Yuki Saito
+
+This program estimates Unvoiced / Voiced regions of F0 sequence from the discrete F0 sequence.
+The file format for F0 file is HTS-defined one (binary float, logF0, and unvoiced symbol:-1e+10).
+The simplest command is:
+   ./UV sample.lf0 > sample.uv
+
+
+UV: not enough files
+usage: UV [options...] [input lf0 file]
+options:
+	-shift f[5.0]                   : frame shift [ms]
+	-nmsg                           : no message
+	-help                           : print this message
