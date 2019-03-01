@@ -1,0 +1,18 @@
+README         Shinnosuke Takamichi
+
+This program estimates a continuous F0 sequence from the discrete F0 sequence.
+The file format for F0 file is HTS-defined one (binary float, logF0, and unvoiced symbol:-1e+10).
+The simplest command is:
+   ./ContF0 -extp 2 sample.lf0 > sample.clf0
+
+
+ContF0: not enough files
+usage: ContF0 [options...] [input lf0 file]
+options:
+   -cf f[10.0]                     : cut-off freq [Hz]
+   -shift f[5.0]                   : frame shift [ms]
+   -extp n[0]                      : extrapolation (0:no, 1:mean, 2:near V, 3:near V + noise)
+   -nolpf                          : not apply lpf after inter/extrapolation
+   -zmean s                        : set org F0 mean to 0 and print mean
+   -nmsg                           : no message
+   -help                           : print this message
