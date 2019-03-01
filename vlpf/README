@@ -1,0 +1,17 @@
+README      Shinnosuke Takamichi
+
+This program applies LPF to a vector sequence.
+The HTS-defined format is accepted.
+The recommended way is:
+   ./vlpf -dim 25 -cf 50.0 -double -zp input.mgc > out.mgc
+
+options:
+   -dim f[25]                      : vector dimension
+   -cf f[70.0]                     : cut-off freq [Hz]
+   -shift f[5.0]                   : frame shift [ms]
+   -double                         : double in/out
+   -zp                             : zero phase filter
+   -nmsg                           : no message
+   -help                           : print this message
+                     
+   
