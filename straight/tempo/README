@@ -1,0 +1,152 @@
+Program for F0 Extraction in STRAIGHT Analysis
+* FOR LITTLE ENDIAN
+
+usage: tempo [options...] [inputfile] [outputfile]
+options:
+        -uf0 upperf0[800.0]             : f0 upper limit [Hz]
+        -lf0 lowerf0[40.0]              : f0 lower limit [Hz]
+        -f samp_freq[16000.0]           : sampling frequency [Hz]
+        -shift shift[1.0]               : frame shift [ms], (<= 5 ms)
+        -f0shift f0shift[5.0]           : f0 frame shift [ms]
+        -cf0file cf0file                : candidate f0 file
+        -fast                           : fast version
+        -raw                            : input raw file (16bit short)
+        -nmsg                           : no message
+        -help                           : display this message
+
+Input file is a wav file (RIFF WAVE). If input file is a raw file,
+use -raw and determine sampling frequency by -f.
+
+Output file is a text file describing F0s [Hz]. A range of F0s is
+determined by -uf0 and -lf0. If an input file includes some noises,
+e.g., an AC component, you need to set -lf0 and -uf0 to appropriate
+values. A shift length of output F0s is determined by -f0shift.
+
+Some messages are printed while executing this program. If you
+don't need those messages, use -nmsg.
+
+In order to reduce the computational cost, some processes can
+be removed by -fast.
+* Note that this option causes the degradation of estimation accuracy.
+
+If you would like to correct the F0s by hand, you can select
+the other candidates of F0s. A candidate F0 file is generated
+by -cf0file. An example of this file is as follows:
+   # FrameShift=10
+   0.0 100.0 79.6 76.0 42.2 46.4 254.0 0.0 
+   0.0 100.0 44.4 53.1 267.3 49.5 92.1 44.7 
+   136.3 93.5 58.6 27.9 
+   127.1 87.1 57.1 64.6 223.0 50.9 
+The odd columns show candidates of F0s. The 1st columns show
+the best F0s. The even columns show confidence values but these
+values are not reliable... For example, in the following line,
+   127.1 87.1 57.1 64.6 223.0 50.9 
+the best F0 value is 127.1 Hz, the 2nd candidate F0 is 57.1 Hz,
+and the 3rd candidate F0 is 223.0 Hz.
+
+
+<EXAMPLE>
+% tempo \
+	-uf0 400 \
+	-lf0 70 \
+        -f0shift 10.0 \
+        -cf0file output.cf0 \
+	-fast \
+        -nmsg \
+	input.wav \
+	output.f0
+
+
+Tomoki Toda (tomoki@ics.nitech.ac.jp)
+
+
+==================================================
+The current copyright is
+
+/* **** warning ****
+STRAIGHT is always under construction. Please use it with your own risk.
+**** end of warning ****
+
+The procedures and data, so-called STRAIGHT-suite, in this directory
+are under the copyright of ATR Human Information Processing Research
+laboratories, Wakayama University, CREST and Prof. Hideki Kawahara. No
+programs and data in this directory should be distributed without the
+written permission by Prof. Hideki Kawahara.
+
+Hideki Kawahara, Professor
+Media Design Informatics Group 
+Design and Information Science Dept.
+Faculty of Systems Engineering, Wakayama University
+Sakaedani, Wakayama, Wakayama 640-8510, Japan
+Phone: +81-734-57-8461 Fax: +81-734-57-8112
+E-mail: kawahara@sys.wakayama-u.ac.jp
+
+However, the copyright holders do not wish to restrict the use of
+STRAIGHT-suite for research purpose. Permission for research use
+may be provided without any problem, if requested. If you wish to
+apply STRAIGHT-suite for commercial use, please contact Dr. Katagiri
+of ATR Human Information Processing Research laboratories.
+
+Shigeru Katagiri, Dr.
+Head, 1st department
+ATR Human Information Processing Research Laboratories
+2-2 Hikaridai, Seika-cho, Soraku-gun,
+Kyoto 619-0288, Japan
+Phone: +81-774-95-1054  Fax: +81-774-95-1008
+E-mail: katagiri@hip.atr.co.jp
+
+NO WARRANTY: STRAIGHT-suite is always under construction. The
+copyright holders do not have any responsibilities for possible damage
+or loss of assets which may be caused by improper or proper use of
+STRAIGHT-suite. Please use it at your own risk.
+
+STRAIGHT support page:
+Please do not disclose these URL. They are subject to change.
+http://www.sys.wakayama-u.ac.jp/~kawahara/puzzlet/STRAIGHTtipse/
+
+Last update: 23 December, 2000.
+*/
+
+/*********************************************************************/
+/*                                                                   */
+/*            Nagoya Institute of Technology, Aichi, Japan,          */
+/*       Nara Institute of Science and Technology, Nara, Japan       */
+/*                                and                                */
+/*             Carnegie Mellon University, Pittsburgh, PA            */
+/*                      Copyright (c) 2003-2004                      */
+/*                        All Rights Reserved.                       */
+/*                                                                   */
+/*  Permission is hereby granted, free of charge, to use and         */
+/*  distribute this software and its documentation without           */
+/*  restriction, including without limitation the rights to use,     */
+/*  copy, modify, merge, publish, distribute, sublicense, and/or     */
+/*  sell copies of this work, and to permit persons to whom this     */
+/*  work is furnished to do so, subject to the following conditions: */
+/*                                                                   */
+/*    1. The code must retain the above copyright notice, this list  */
+/*       of conditions and the following disclaimer.                 */
+/*    2. Any modifications must be clearly marked as such.           */
+/*    3. Original authors' names are not deleted.                    */
+/*                                                                   */    
+/*  NAGOYA INSTITUTE OF TECHNOLOGY, NARA INSTITUTE OF SCIENCE AND    */
+/*  TECHNOLOGY, CARNEGIE MELLON UNIVERSITY, AND THE CONTRIBUTORS TO  */
+/*  THIS WORK DISCLAIM ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,  */
+/*  INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, */
+/*  IN NO EVENT SHALL NAGOYA INSTITUTE OF TECHNOLOGY, NARA           */
+/*  INSTITUTE OF SCIENCE AND TECHNOLOGY, CARNEGIE MELLON UNIVERSITY, */
+/*  NOR THE CONTRIBUTORS BE LIABLE FOR ANY SPECIAL, INDIRECT OR      */
+/*  CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM   */
+/*  LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,  */
+/*  NEGLIGENCE OR OTHER TORTUOUS ACTION, ARISING OUT OF OR IN        */
+/*  CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.         */
+/*                                                                   */
+/*********************************************************************/
+/*                                                                   */
+/*          Author :  Tomoki Toda (tomoki@ics.nitech.ac.jp)          */
+/*          Date   :  June 2004                                      */
+/*                                                                   */
+/*-------------------------------------------------------------------*/
+/*                                                                   */
+/*  TEMPO V30k18 (matlab)                                            */
+/*                                                                   */
+/*-------------------------------------------------------------------*/
