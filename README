@@ -1,0 +1,37 @@
+DNN音声変換スクリプト README
+齋藤 佑樹 さん作成(2018/04/13)のプログラムを田丸浩気が一部改変(2018/05/28)
+
+[使い方]
+1. proen_VC.zip をホームディレクトリにダウンロードする．
+2. 端末にunzip proen_VC.zip と入力し、zipを解凍する．
+# 実行中に止まることがありますが，特に気にせずにyを入力して続行してください．
+3. data/wavに、収録した音声データをフォルダ(人の名前をつける)ごと入れる。
+4. cd proen_VC でディレクトリを移動する．
+5. vc.csh を適当なエディタで開いて，パラメータを設定する．
+# スクリプト内に書いてある指示に従って
+# prjdir, src, tgt, minF0_src, maxF0_src, minF0_tgt, maxF0_tgt
+# の値を設定(src が変換元，tgtが変換先となるように設定)．
+# 初回は
+# minF0_src, minF0_tgtは40,
+# maxF0_src, maxF0_tgtは800
+# として音声特徴量抽出のみを行い、
+# その結果をヒストグラム表示して、minF0_src, maxF0_src, minF0_tgt, maxF0_tgt
+# の実際の値を求め、2回め以降はその値に設定。
+6. data/scpにある、train.scpは学習に用いるファイルリスト、test.scpは学習に基づいて
+# 変換したいファイルのリストに書き換えてください。
+7. csh vc.csh で音声変換スクリプトを実行する．
+8. (特に問題がなければ) out/wav 以下に変換された音声が生成されます．
+
+[installation]source deacrivate
+1.pip
+$curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+$python3 get-pip.py
+ターミナルを再起動
+
+2.pip3でinstallするもの
+$pip3 install jupyter
+$pip3 install chainer
+
+3.ヒストグラム表示
+$jupyter notebook
+その後ブラウザで操作。
